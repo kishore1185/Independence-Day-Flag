@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code the Tricolor</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#07111f}
+body{display:grid;place-items:center}
+canvas{max-width:100%;max-height:100%}
+</style>
+</head>
+<body>
+<canvas id="c" width="800" height="500"></canvas>
+
+<script>
+// Canvas setup and animation variables
+const c=document.getElementById("c"),x=c.getContext("2d"),W=800,H=500;
+let p=0,s=.1,show=0,step=0,t=0,F=[];
+
+const poleX=230,poleH=320,flagW=230,flagH=138;
+
+// Draw a filled rectangle
+function box(a,b,w,h,col){x.fillStyle=col;x.fillRect(a,b,w,h)}
+
+// Draw the platform and two-step base
+function stage(){
+ box(0,445,W,55,"#633d27");
+ if(step){
+  box(150,425,180,20,"#8b5a35");
+  box(160,415,160,10,"#b88755");
+ }
+}
+
+// Draw the rising flag pole and golden top
+function pole(){
+ let base=445-(step?20:0),top=base-p;
+ box(230,top,7,p,"#777");
+ if(p){
+  x.fillStyle="#ffd54d";
+  x.beginPath();
+  x.moveTo(233,top-18);x.lineTo(243,top-7);
+  x.lineTo(233,top);x.lineTo(223,top-7);
+  x.fill();
+ }
+}
+
+// Draw the Ashoka Chakra with 24 spokes
+function chakra(cx,cy,r){
+ x.strokeStyle="#000080";x.lineWidth=2;
+ x.beginPath();x.arc(cx,cy,r,0,7);x.stroke();
+ for(let i=0;i<24;i++){
+  let a=i*Math.PI/12;
+  x.beginPath();x.moveTo(cx,cy);
+  x.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);x.stroke();
+ }
+}
+
+// Draw the three waving Tricolor stripes
+function flag(){
+ let top=445-(step?20:0)-320,sx=237,fh=138*s,fw=230*s,h=fh/3;
+ ["#FF9933","#fff","#138808"].forEach((col,row)=>{
+  x.beginPath();
+  for(let q=0;q<=fw;q+=4){
+   let w=Math.sin(q/18+t)*6*s;
+   x.lineTo(sx+q,top+row*h+w);
+  }
+  for(let q=fw;q>=0;q-=4){
+   let w=Math.sin(q/18+t)*6*s;
+   x.lineTo(sx+q,top+(row+1)*h+w);
+  }
+  x.fillStyle=col;x.fill();
+ });
+ chakra(sx+fw/2,top+h*1.5,h*.36);
+}
+
+// Create and animate random fireworks
+function fire(){
+ if(Math.random()<.025)F.push({
+  x:40+Math.random()*720,y:40+Math.random()*250,
+  r:0,l:1,c:["red","yellow","orange","cyan","magenta","white"]
+  [Math.random()*6|0]
+ });
+ F.forEach(f=>{
+  f.r+=2;f.l-=.02;x.globalAlpha=f.l;x.strokeStyle=f.c;
+  for(let a=0;a<12;a++){
+   let q=a*Math.PI/6;
+   x.beginPath();x.moveTo(f.x,f.y);
+   x.lineTo(f.x+Math.cos(q)*f.r,f.y+Math.sin(q)*f.r);x.stroke();
+  }
+ });
+ x.globalAlpha=1;F=F.filter(f=>f.l>0);
+}
+
+// Display the Independence Day and India 2047 message
+function text(){
+ x.textAlign="center";x.font="bold 24px Arial";
+ let g=x.createLinearGradient(300,0,500,0);
+ g.addColorStop(0,"#FF9933");g.addColorStop(.5,"white");
+ g.addColorStop(1,"#138808");
+ x.fillStyle=g;x.fillText("HAPPY INDEPENDENCE DAY",400,462);
+ x.font="bold 12px Arial";x.fillStyle="#ddd";
+ x.fillText("VIKSIT BHARAT  •  INDIA 2047",400,482);
+}
+
+// Draw the complete scene on every animation frame
+function draw(){
+ x.clearRect(0,0,W,H);box(0,0,W,H,"#07111f");
+ stage();pole();
+ if(show){flag();fire();text()}
+ t+=.08;
+ if(p>0&&p<320)p+=3;
+ if(p>=320)show=1;
+ if(show&&s<1)s+=.025;
+ requestAnimationFrame(draw);
+}
+
+// Start the podium and pole animation
+setTimeout(()=>{
+ step=1;
+ setTimeout(()=>p=1,500);
+},500);
+
+// Start the animation loop
+draw();
+
+// Press R to restart the animation
+document.onkeydown=e=>{
+ if(e.key.toLowerCase()=="r"){
+  p=0;s=.1;show=0;step=0;F=[];
+  setTimeout(()=>{step=1;setTimeout(()=>p=1,500)},300);
+ }
+};
+</script>
+</body>
+</html>
