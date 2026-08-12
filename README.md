@@ -57,38 +57,39 @@ Run the Python file:
 
 ```bash
 python independence_day.py
-
+```
 
 🌐 Method 2 — HTML + CSS + JavaScript
 
-The second implementation recreates the Independence Day animation using HTML, CSS and JavaScript Canvas.
+Celebrate the spirit of India's Independence Day with a web-based animation!
+This project recreates the Indian Flag using HTML, CSS, and JavaScript Canvas, with animated fireworks and a festive Independence Day message.
 
 📖 Description
 
-This version demonstrates how the same concept can be created directly in a web browser without Python or additional frameworks.
+This version is a browser-based implementation of the Independence Day animation.
 
-It uses:
+It uses HTML5 Canvas and JavaScript to:
 
-HTML
-CSS
-JavaScript
-HTML5 Canvas
-Math.sin()
-Math.cos()
-Math.random()
-requestAnimationFrame()
+Draw the Indian Tricolor flag with the Ashoka Chakra.
+Animate the flag pole rising from the base.
+Create a waving flag effect using mathematical functions such as Math.sin().
+Display animated fireworks using random positions and colors.
+Show HAPPY INDEPENDENCE DAY in the national colors.
+Display VIKSIT BHARAT • INDIA 2047 below the greeting.
+
+The entire project is contained in a single index.html file and can run directly in a web browser.
+
 ✨ Features
 
-✅ Animated waving Indian Tricolor
+✅ Animated waving tricolor flag
 ✅ Ashoka Chakra with 24 spokes
-✅ Rising flag pole and podium
-✅ Animated fireworks
-✅ HAPPY INDEPENDENCE DAY message
+✅ Animated rising flag pole
+✅ Two-step flag platform
+✅ Random fireworks effects
+✅ Tricolor Happy Independence Day message
 ✅ VIKSIT BHARAT • INDIA 2047 message
-✅ Mathematical wave animation
-✅ Randomized fireworks
-✅ No external libraries
-✅ No Node.js or npm required
+✅ Mathematical animation using Math.sin() and Math.cos()
+✅ No external libraries or frameworks
 ✅ Works completely offline
 
 🛠 Requirements
@@ -98,16 +99,39 @@ Only a modern web browser is required:
 Google Chrome
 Microsoft Edge
 Mozilla Firefox
-Any modern browser supporting HTML5 Canvas
 
-No Node.js, npm, internet connection, or external libraries are required.
+No additional software is required.
+
+Node.js, npm, React, Vite, or any external JavaScript libraries are not needed.
 
 🚀 How to Run
 
-Simply open:
+Simply open the index.html file in a web browser.
 
+Locate index.html.
+Double-click the file.
+It will open directly in your default browser.
+The Independence Day animation will start automatically.
+
+No internet connection or local server is required.
+
+💻 Technologies Used
+HTML — Page and Canvas structure
+CSS — Basic styling
+JavaScript — Animation and program logic
+HTML5 Canvas — Drawing the flag, pole, fireworks and text
+Math.sin() / Math.cos() — Waving and geometric effects
+Math.random() — Random fireworks generation
+requestAnimationFrame() — Smooth animation loop
+
+🇮🇳 Viksit Bharat • India 2047
+
+Code. Create. Innovate. Celebrate.
+
+Jai Hind 🇮🇳
+### Option 1 — Open Directly
+
+Simply double-click:
+
+```text
 index.html
-
-in a web browser.
-
-You can also double-click the file to launch the animation directly.
